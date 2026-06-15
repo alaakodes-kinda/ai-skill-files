@@ -189,4 +189,125 @@ Update `prototype-v1.html` to use the design tokens and components. Save it as `
 After delivering all files, say:
 > "Here's what you now have: a validated flow, a token-based design system, and a styled prototype. Every new screen you build should use these tokens — don't hardcode any color, size, or spacing. If something feels off, the fix goes in the token, not the component."
 
-Then give the user 3 specific things to watch for as they continue building — based on what you learned in Phase 1.
+---
+
+## Phase 4: Utility Pages
+
+Every product has screens that aren't the happy path. Build them now, with the design system applied, before they get forgotten.
+
+Say:
+> "Happy path is done. Now let's build the screens users see when things go wrong or haven't started yet — these are often the ones that get shipped broken."
+
+Build a single `utility-pages.html` file containing all four states, separated by clear headings:
+
+### 4.1 — 404 / Not Found
+- Clear heading: "Page not found" or equivalent
+- One sentence explanation
+- One primary action: return to a safe place (home, dashboard)
+- Use the design system tokens — same visual language as the rest of the product
+- No dead ends: the user must always have somewhere to go
+
+### 4.2 — Error Page
+- Distinguish between user error ("you did something wrong") and system error ("we broke something")
+- System error: apologize, give a retry action, don't show a stack trace
+- User error: explain what went wrong in plain language, show how to fix it
+- Both must have a primary action to recover
+
+### 4.3 — Empty State
+- This is the screen users see before they've done anything — it's the first real impression after signup
+- Must answer: what is this section for? what should I do first?
+- Include: a short headline, one sentence of context, one primary CTA
+- No tables or lists with zero rows — replace them entirely with this state
+- Tone should match the product voice from Phase 1
+
+### 4.4 — Loading State
+- Show what the page skeleton looks like while data loads
+- Use placeholder shapes (gray bars) that match the actual content layout — not a spinner in the middle of nowhere
+- The skeleton should communicate the structure of what's coming so the user isn't surprised
+
+After building all four, say:
+> "These four states are now part of your design system. They should use the same tokens as everything else — if you change a color token, these update too."
+
+---
+
+## Phase 5: Accessibility Check
+
+Review `prototype-v2.html` and `components.html` against the following checklist. Report each issue with the specific element and the fix.
+
+Say:
+> "Running accessibility check — this is the difference between a product that works for everyone and one that excludes people quietly."
+
+### 5.1 Color Contrast
+- Check every text/background combination in the design system tokens against WCAG AA (4.5:1 for body text, 3:1 for large text and UI components)
+- If a combination fails, flag it with the actual ratio and suggest the corrected token value
+- Pay special attention to: disabled states, placeholder text, muted labels
+
+### 5.2 Interactive Elements
+- Every button, link, and input must have a visible focus state (not just the browser default outline — a styled ring using the design tokens)
+- Buttons must be at least 44×44px tap target
+- Icon-only buttons must have an aria-label equivalent in the HTML
+- No action should be triggered only on hover
+
+### 5.3 Semantic Structure
+- One `<h1>` per page, followed by a logical heading hierarchy (h2, h3 — no skipping levels)
+- Form inputs must have associated `<label>` elements (not just placeholder text)
+- Error messages must be associated with their input (not just styled red text nearby)
+- Images must have descriptive `alt` text — not filenames, not empty unless decorative
+
+### 5.4 Motion & Reduced Motion
+- If any animations were defined in the design system, add a `@media (prefers-reduced-motion: reduce)` rule that disables or simplifies them
+
+### 5.5 Keyboard Navigation
+- Tab order must follow the visual reading order
+- Modal dialogs must trap focus while open and return focus on close
+- No keyboard traps elsewhere
+
+Produce a short report:
+```
+ACCESSIBILITY REPORT
+━━━━━━━━━━━━━━━━━━━━
+✓ Passed: [list]
+✗ Failed: [element] — [issue] — [fix]
+```
+
+Then apply fixes directly to `prototype-v2.html` and `components.html`.
+
+---
+
+## Phase 6: Responsiveness Check
+
+Review the prototype at three breakpoints and produce a responsive version.
+
+Say:
+> "Last step — let's make sure this works on every screen, not just the one you designed on."
+
+### Breakpoints to target
+
+| Name | Width | What to check |
+|---|---|---|
+| Mobile | 375px | Single column, full-width buttons, no horizontal scroll, tap targets ≥ 44px |
+| Tablet | 768px | Two-column where appropriate, navigation pattern change |
+| Desktop | 1280px | Max content width, generous whitespace, multi-column layouts |
+
+### Rules
+
+- **No horizontal scroll** at any breakpoint — if content overflows, it wraps or stacks
+- **Typography scales down** on mobile — display sizes that work at desktop will be too large at 375px. Reduce by ~30–40%.
+- **Navigation changes** — top nav collapses to a hamburger or bottom bar on mobile
+- **Buttons go full-width on mobile** unless there are two side-by-side (primary + secondary)
+- **Touch targets** — all interactive elements minimum 44×44px on mobile
+- **Tables** — never scroll horizontally on mobile. Collapse to cards or stacked rows.
+- **Images** — never overflow their container. Use `max-width: 100%`.
+
+Add a `<style>` block with responsive CSS using media queries to `prototype-v2.html`. Save the result as `prototype-final.html`.
+
+After saving, say:
+> "Here's your final deliverable set:"
+> - `prototype-v1.html` — bare flow, no styling
+> - `design-system.css` — all tokens
+> - `components.html` — component library with all states
+> - `utility-pages.html` — 404, error, empty state, loading
+> - `prototype-v2.html` — styled prototype
+> - `prototype-final.html` — responsive, accessible, production-ready
+
+Then give the user **3 things to watch for** as they build the real product — specific to what you learned about their users and product in Phase 1.
