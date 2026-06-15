@@ -73,33 +73,70 @@ Only move to Phase 3 after the user confirms the prototype flow is correct.
 Before building the design system, ask the user if they want to base it on an existing design language.
 
 Say:
-> "Before I build the design system from scratch, I have 5 reference design languages you can draw from. Each one has a complete set of tokens, components, typography, and color rules extracted from a real product. Want to base your system on one of them, or should I build fresh?"
+> "Before I build the design system from scratch, I have 13 reference design languages you can draw from. Each one has a complete set of tokens, components, typography, and color rules extracted from a real product. Want to base your system on one of them, or should I build fresh?"
 
 Show this menu:
 
 ```
-1. Figma — Black & white editorial with oversized pastel color blocks. Technical + joyful.
-2. Revolut — Dark storytelling canvas with cobalt violet accent. Fintech-meets-product-brochure.
-3. Spotify — Near-black immersive dark theme. Content-first, pill geometry, heavy shadows.
-4. Stripe — Gradient mesh hero, electric indigo CTA, thin Sohne typography. Infrastructure-grade.
-5. Wise — Lime-green CTA, sage canvas, weight-900 display type. Scandinavian fintech feel.
-6. Build from scratch — I'll define everything based on what you told me in Phase 1.
+LIGHT / EDITORIAL
+  1. Claude     — Warm cream canvas, slab-serif Copernicus display, coral CTA. Literary + humanist.
+  2. Figma      — Black & white editorial with oversized pastel color blocks. Technical + joyful.
+  3. IBM        — Carbon Design System. Square corners, IBM Plex Sans 300, one confident blue.
+  4. Intercom   — Soft cream canvas, Saans geometric sans, Fin Orange AI accent. Product-screenshot-led.
+  5. Nike       — Photography-first commerce. Futura campaign lockups, pill CTAs, neutral chrome.
+  6. Notion     — Warm paper canvas, Inter tight-tracked, single blue + playful sticker palette.
+  7. PostHog    — Cream canvas, yellow-orange CTA, IBM Plex + hedgehog illustration. Developer-blog feel.
+
+DARK / IMMERSIVE
+  8. Framer     — Near-black artboard, GT Walsheim poster headlines, vibrant gradient spotlight cards.
+  9. Linear     — Deepest dark (#010102), lavender-blue accent, product screenshots as protagonist.
+ 10. Revolut    — Dark storytelling canvas with cobalt violet accent. Fintech-meets-product-brochure.
+ 11. Spotify    — Near-black immersive dark theme. Content-first, pill geometry, heavy shadows.
+
+BRANDED / TRANSACTIONAL
+ 12. Stripe     — Gradient mesh hero, electric indigo CTA, thin Sohne typography. Infrastructure-grade.
+ 13. Wise       — Lime-green CTA, sage canvas, weight-900 display type. Scandinavian fintech feel.
+
+ 14. Build from scratch — I'll define everything based on what you told me in Phase 1.
 ```
 
 Wait for the user's answer.
 
-**If they pick 1–5:** Read the corresponding template file from `~/.claude/skills/design-coach/templates/`:
-- 1 → `DESIGN-figma.md`
-- 2 → `DESIGN-revolut.md`
-- 3 → `DESIGN-spotify.md`
-- 4 → `DESIGN-stripe.md`
-- 5 → `DESIGN-wise.md`
+**If they pick 1–13:** Read the corresponding template file from `~/.claude/skills/design-coach/templates/`:
+- 1  → `DESIGN-claude.md`
+- 2  → `DESIGN-figma.md`
+- 3  → `DESIGN-ibm.md`
+- 4  → `DESIGN-intercom.md`
+- 5  → `DESIGN-nike.md`
+- 6  → `DESIGN-notion.md`
+- 7  → `DESIGN-posthog.md`
+- 8  → `DESIGN-framer.md`
+- 9  → `DESIGN-linear.md`
+- 10 → `DESIGN-revolut.md`
+- 11 → `DESIGN-spotify.md`
+- 12 → `DESIGN-stripe.md`
+- 13 → `DESIGN-wise.md`
 
 Say: "Got it — I'll use [Name]'s design language as the foundation and adapt it to your product. The tokens, type scale, color roles, and component patterns will follow their system. Let's go."
 
 Then in Phase 3, use that file as the reference for every decision: colors come from its palette, type scale from its typography tokens, radius from its rounded scale, components from its component patterns.
 
-**If they pick 6:** Proceed to Phase 3 and build fresh based on Phase 1 answers.
+**If they pick 14:** Proceed to Phase 3 and build fresh based on Phase 1 answers.
+
+---
+
+## Phase 2.6: Animation
+
+After the template is chosen (or "build from scratch"), ask:
+
+> "One more thing before we build — do you want motion and animations in this product? Things like page transitions, micro-interactions on buttons, skeleton loading animations, and scroll-driven effects."
+
+If **yes**:
+- Run: `npx skills add emilkowalski/skill`
+- Say: "Installing the motion skill — this adds a curated animation library (Vaul, Motion, spring physics) to your workflow. Once it's installed, I'll use it to add purposeful motion to your components."
+- After installation, note that any animations added in Phase 3 and beyond should respect `@media (prefers-reduced-motion: reduce)`.
+
+If **no**: proceed directly to Phase 3 with no motion layer.
 
 ---
 
