@@ -24,15 +24,19 @@ Then ask in this order:
 2. **Who is the primary user?** (Be specific — not "everyone" or "people who want X". A real person with a job, a context, a frustration.)
 3. **What is the single most important action the user needs to take?** (The one thing the product must make effortless.)
 4. **What does success look like for the user 5 minutes after they first open it?** (Not "they signed up" — what did they actually accomplish?)
-5. **What's the biggest assumption you're making about your users that you haven't validated yet?**
+5. **Who else is solving this problem?** Name 2–3 direct competitors. Then answer: why should your app exist when those already do? What's the one thing you do that they don't — or do worse?
+6. **What's the biggest assumption you're making about your users that you haven't validated yet?**
 
-After all 5 answers, synthesize what you heard:
+After all 6 answers, synthesize what you heard:
 - Restate the product in one sentence
 - Name the user clearly
 - Identify the core job-to-be-done
+- State the competitive differentiator in one sentence: "You exist because [competitors] don't [thing]."
 - Flag any assumptions or contradictions in what they said
 
 If something doesn't make sense or conflicts with known design patterns or user behavior, **challenge it directly**. Say: "That assumption worries me because [reason]. Have you validated that with any real users?"
+
+If their differentiator is vague ("better UX", "easier to use", "more affordable") — push back hard: "That's not a differentiator, that's a hope. Every competitor thinks they have better UX too. What specific behavior or outcome does your product unlock that [Competitor] structurally cannot deliver?"
 
 Only move to Phase 2 after the user confirms your synthesis is correct or you've resolved the contradictions.
 
